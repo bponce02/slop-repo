@@ -1,0 +1,30 @@
+# Vision Tetris agent — proof of concept
+
+Pixels from https://play.tetris.com/ go to OpenRouter Decisions; a bounded action ID becomes real browser keyboard events. No DOM, board parser, game state, generated code, or chat fallback. The game continues during inference. Capture retains the newest frame; one model request runs at a time. Keys are released after each bounded macro, not held during inference. Menus/start are manual for now.
+
+## Run
+
+```sh
+cd projects/vision-tetris-agent
+uv sync
+uv run playwright install chromium
+cp .env.example .env # put your capped OpenRouter key here
+uv run python agent.py --model flash
+# Alternatives: --model clef or --model luna
+```
+
+Start the game manually in the visible browser, dismiss overlays, verify key bindings, click the game to focus it, then press Enter in the terminal. Do not use the browser while the agent runs. Ctrl+C stops it. Screenshots and JSONL traces go into ignored `runs/` folders.
+
+Models: `cloudflare/clef-flash`, `cloudflare/clef`, `openai/gpt-6-luna-decisions`. All use `https://openrouter.ai/api/alpha/decisions` and top-level `state` image parts. No direct-provider billing.
+
+Default run: 120 seconds, $1 budget, $0.05 reserved before each call, 1.5-second stale-frame cutoff. Increase cutoff only if you accept delayed inputs. Missing costs or API failures stop without retries. The reservation is conservative but **cannot guarantee a hard dollar ceiling**: a provider can bill more than reserved or charge an ambiguous failed request. Use an OpenRouter key with a $1 limit as the authoritative cap. Budget is per run; the key cap covers multiple runs. No API key is logged.
+
+## Cheap smoke check
+
+```sh
+uv run python agent.py --smoke --headless
+```
+
+Loads the real site and saves a screenshot, without inference or game inputs. Model performance and actual gameplay require a supplied key. This is a POC, not a full Tetris solver; model latency and game key-repeat timing will affect results.
+
+Reference: https://openrouter.ai/docs/guides/community/multimodal-decisions
