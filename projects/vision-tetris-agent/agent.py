@@ -207,7 +207,11 @@ async def run(args):
                         "state": [context, {"type": "image_url", "image_url": {
                             "url": "data:image/jpeg;base64," + base64.b64encode(frame).decode()
                         }}],
-                        "questions": COMPACT_QUESTIONS,
+                        "questions": {"action": {
+                            "type": "choice",
+                            "instructions": "Which single next input sequence best advances a useful landing and scoring from the current screenshot?",
+                            "criteria": CRITERIA,
+                        }},
                     }
                     # No automatic retries: ambiguous failures may have incurred a charge.
                     spent += args.reserve
@@ -221,7 +225,7 @@ async def run(args):
                         spent += actual - args.reserve
                     else:
                         raise RuntimeError("Missing billing cost; stopping conservatively.")
-                    action = compact_action(payload)
+                    action = validate(payload)
                     age = time.monotonic() - captured
                     applied = age <= args.max_age and spent <= args.budget and time.monotonic() - start < args.seconds
                     record = {"step": number, "action": action, "applied": applied,

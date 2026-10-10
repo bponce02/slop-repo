@@ -42,3 +42,7 @@ Default `--crop 285,15,390,575` extracts the game panel (board, score, hold and 
 ## Compact decisions (current default)
 
 Four independent choice heads share one request: rotation (4 choices), movement (-5..+5 taps), finish (observe/drop), and mode (play/hold/wait/stop). Mode gates execution; non-play modes discard the other planned inputs. The resulting sequence still uses the bounded executor above, but the model no longer receives the full 91-flow catalog. All returned heads/probabilities are saved under `answers` in the trace. Default model is now Luna. Independence means answers may conflict; no correctness guarantee is implied. Tests of live performance remain pending.
+
+## Current policy: one question
+
+The live agent again asks just one `action` choice question, selecting one complete bounded input sequence from the 91-flow catalog. Compact independent heads are no longer sent. Cropping, existing action history, drop-last execution, and billing logs remain. Default model remains Luna. This restores coherent single-choice sequences at the expense of a larger request.
