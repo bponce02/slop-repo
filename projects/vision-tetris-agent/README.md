@@ -33,4 +33,8 @@ Reference: https://openrouter.ai/docs/guides/community/multimodal-decisions
 
 The model now chooses from 91 finite flows: no rotation / clockwise / half turn / counterclockwise, followed by -5 to +5 horizontal taps, ending with observation or a final hard drop. `flow_cw_+2_drop` means rotate clockwise, tap right twice, then Space. Each key is held 45ms with a 35ms release gap; scheduled sequences are at most 640ms (real scheduling can be slower). Hold/swap is separate so the replacement piece is observed before further inputs. No keyboard events overlap; all keys release after each tap.
 
-The prompt emphasizes observe → plan → execute → observe. History includes the selected flow and its actual configured key/duration list. No game-state parser or placement solver was added. Full-viewport images are still used; game crops and multi-frame observation remain experiments. Keyboard smoke checks passed, but gameplay gains are unverified.
+The prompt emphasizes observe → plan → execute → observe. History includes the selected flow and its actual configured key/duration list. No game-state parser or placement solver was added. Screenshots now default to the game-region crop described below; multi-frame observation remains experimental. Keyboard smoke checks passed, but gameplay gains are unverified.
+
+## Screenshot crop
+
+Default `--crop 285,15,390,575` extracts the game panel (board, score, hold and next) from the fixed 960x720 viewport and enlarges it 2x. This is a pixel crop, not DOM reading or game-state extraction. Adjust if the site layout changes. `--crop none` restores full-page observation. Saved decision screenshots are exactly the cropped JPEGs sent to the API. No previous-frame input has been added; existing action history remains unchanged.

@@ -65,9 +65,16 @@ FLOW_PROMPT = (
 )
 
 
-def encode_frame(png):
+def encode_frame(png, crop=None):
     image = Image.open(io.BytesIO(png)).convert("RGB")
-    image.thumbnail((960, 720))
+    if crop:
+        x, y, width, height = crop
+        if x < 0 or y < 0 or width <= 0 or height <= 0 or x + width > image.width or y + height > image.height:
+            raise ValueError("Crop must fit within the screenshot: x,y,width,height")
+        image = image.crop((x, y, x + width, y + height))
+        image = image.resize((width * 2, height * 2), Image.Resampling.LANCZOS)
+    else:
+        image.thumbnail((960, 720))
     for quality in (80, 65, 45):
         buf = io.BytesIO()
         image.save(buf, "JPEG", quality=quality)
@@ -124,7 +131,7 @@ async def run(args):
             try:
                 while True:
                     captured = time.monotonic()
-                    frame = encode_frame(await page.screenshot())
+                    frame = encode_frame(await page.screenshot(), args.crop)
                     latest = (captured, frame)
                     await asyncio.sleep(0.1)
             except Exception as exc:
@@ -134,7 +141,7 @@ async def run(args):
             await page.goto(args.url, wait_until="domcontentloaded", timeout=60000)
             if args.smoke:
                 await page.wait_for_timeout(5000)
-                (folder / "smoke.jpg").write_bytes(encode_frame(await page.screenshot()))
+                (folder / "smoke.jpg").write_bytes(encode_frame(await page.screenshot(), args.crop))
                 print(f"Screenshot saved: {folder / 'smoke.jpg'}; no API calls or game inputs.")
                 return
             print("Start Tetris manually, dismiss overlays, check controls (arrows, Z, C, Space),")
@@ -188,7 +195,7 @@ async def run(args):
                     applied = age <= args.max_age and spent <= args.budget and time.monotonic() - start < args.seconds
                     record = {"step": number, "action": action, "applied": applied,
                         "frame_age_ms": round(age * 1000), "spent": spent,
-                        "request_id": payload.get("id"), "model": payload.get("model"), "request_cost": actual,
+                        "crop": args.crop, "request_id": payload.get("id"), "model": payload.get("model"), "request_cost": actual,
                         "provider": payload.get("provider"), "usage": payload.get("usage"),
                         "answer": payload["answers"]["action"], "sequence": ACTIONS[action]}
                     history.append({"action": action, "applied": applied, "inputs": ACTIONS[action] if applied else []})
@@ -222,6 +229,7 @@ async def run(args):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--crop", default="285,15,390,575", help="Screenshot region x,y,width,height; use 'none' for full viewport. Default includes board, score, hold and next in 960x720 viewport.")
     parser.add_argument("--model", choices=MODELS, default="flash")
     parser.add_argument("--url", default="https://play.tetris.com/")
     parser.add_argument("--seconds", type=float, default=120)
@@ -231,7 +239,14 @@ def main():
     parser.add_argument("--headless", action="store_true", help="Useful for screenshot smoke checks")
     parser.add_argument("--smoke", action="store_true", help="Capture only; no paid API calls")
     try:
-        asyncio.run(run(parser.parse_args()))
+        args = parser.parse_args()
+        try:
+            args.crop = None if args.crop.lower() == "none" else tuple(int(v) for v in args.crop.split(","))
+            if args.crop is not None and len(args.crop) != 4:
+                raise ValueError()
+        except ValueError:
+            parser.error("--crop must be none or four integers: x,y,width,height")
+        asyncio.run(run(args))
     except KeyboardInterrupt:
         print("Stopped.")
 
