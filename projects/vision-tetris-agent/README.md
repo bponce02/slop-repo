@@ -46,3 +46,7 @@ Four independent choice heads share one request: rotation (4 choices), movement 
 ## Current policy: one question
 
 The live agent again asks just one `action` choice question, selecting one complete bounded input sequence from the 91-flow catalog. Compact independent heads are no longer sent. Cropping, existing action history, drop-last execution, and billing logs remain. Default model remains Luna. This restores coherent single-choice sequences at the expense of a larger request.
+
+## Current policy: basic operations
+
+One `action` choice question now selects among 11 basic operations: idle, left/right tap, left/right hold, clockwise/counterclockwise rotation, soft drop, hard drop, hold/swap, stop. Compound flows and compact heads are removed. Cropping and existing action history remain enabled. Prior sections describing flow choices are historical.
