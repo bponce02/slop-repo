@@ -50,3 +50,5 @@ The live agent again asks just one `action` choice question, selecting one compl
 ## Current policy: basic operations
 
 One `action` choice question now selects among 11 basic operations: idle, left/right tap, left/right hold, clockwise/counterclockwise rotation, soft drop, hard drop, hold/swap, stop. Compound flows and compact heads are removed. Cropping and existing action history remain enabled. Prior sections describing flow choices are historical.
+
+`stop` has been removed from model choices. The model has 10 basic operations and can choose idle when gameplay is not visible. Runs end by time/budget limits, errors, or manual Ctrl+C—not a model decision.
