@@ -28,3 +28,9 @@ uv run python agent.py --smoke --headless
 Loads the real site and saves a screenshot, without inference or game inputs. Model performance and actual gameplay require a supplied key. This is a POC, not a full Tetris solver; model latency and game key-repeat timing will affect results.
 
 Reference: https://openrouter.ai/docs/guides/community/multimodal-decisions
+
+## Input flows
+
+The model now chooses from 91 finite flows: no rotation / clockwise / half turn / counterclockwise, followed by -5 to +5 horizontal taps, ending with observation or a final hard drop. `flow_cw_+2_drop` means rotate clockwise, tap right twice, then Space. Each key is held 45ms with a 35ms release gap; scheduled sequences are at most 640ms (real scheduling can be slower). Hold/swap is separate so the replacement piece is observed before further inputs. No keyboard events overlap; all keys release after each tap.
+
+The prompt emphasizes observe → plan → execute → observe. History includes the selected flow and its actual configured key/duration list. No game-state parser or placement solver was added. Full-viewport images are still used; game crops and multi-frame observation remain experiments. Keyboard smoke checks passed, but gameplay gains are unverified.
