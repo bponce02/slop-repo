@@ -52,3 +52,5 @@ The live agent again asks just one `action` choice question, selecting one compl
 One `action` choice question now selects among 11 basic operations: idle, left/right tap, left/right hold, clockwise/counterclockwise rotation, soft drop, hard drop, hold/swap, stop. Compound flows and compact heads are removed. Cropping and existing action history remain enabled. Prior sections describing flow choices are historical.
 
 `stop` has been removed from model choices. The model has 10 basic operations and can choose idle when gameplay is not visible. Runs end by time/budget limits, errors, or manual Ctrl+C—not a model decision.
+
+`idle` is also removed. All nine model choices send a game input. Start/focus gameplay manually; there is no model-selected wait or stop. Time/budget limits, errors and Ctrl+C still terminate the run. During menus/transitions, the model may select an inappropriate input because abstention is unavailable.
