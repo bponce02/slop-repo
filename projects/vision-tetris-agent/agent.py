@@ -107,23 +107,8 @@ async def run(args):
     async with async_playwright() as pw, httpx.AsyncClient(timeout=10) as client:
         browser = await pw.chromium.launch(headless=args.headless)
         page = await browser.new_page(viewport={"width": 960, "height": 720})
-        latest = None
-        capture_error = None
         spent = 0.0
         history = []
-        task = None
-
-        async def capture():
-            nonlocal latest, capture_error
-            try:
-                while True:
-                    captured = time.monotonic()
-                    frame = encode_frame(await page.screenshot(), args.crop)
-                    latest = (captured, frame)
-                    await asyncio.sleep(0.1)
-            except Exception as exc:
-                capture_error = str(exc)
-
         try:
             await page.goto(args.url, wait_until="domcontentloaded", timeout=60000)
             if args.smoke:
@@ -135,20 +120,16 @@ async def run(args):
             print("then focus the game board. Return here and press Enter; browser will regain focus.")
             await asyncio.to_thread(input)
             await page.bring_to_front()
-            task = asyncio.create_task(capture())
             start = time.monotonic()
             with (folder / "trace.jsonl").open("a") as log:
                 while time.monotonic() - start < args.seconds:
-                    if capture_error:
-                        raise RuntimeError("Capture failed: " + capture_error)
-                    if latest is None:
-                        await asyncio.sleep(0.05)
-                        continue
                     # Conservative reservation, not a guarantee of provider billing.
                     if spent + args.reserve > args.budget:
                         print("Stopping before next request: budget reservation reached.")
                         break
-                    captured, frame = latest
+                    captured = time.monotonic()
+                    frame = encode_frame(await page.screenshot(), args.crop)
+                    capture_ms = (time.monotonic() - captured) * 1000
                     number = len(history)
                     (folder / f"{number:04d}.jpg").write_bytes(frame)
                     context = (
@@ -169,10 +150,12 @@ async def run(args):
                     }
                     # No automatic retries: ambiguous failures may have incurred a charge.
                     spent += args.reserve
+                    inference_started = time.monotonic()
                     response = await client.post("https://openrouter.ai/api/alpha/decisions", json=body,
                         headers={"Authorization": f"Bearer {key}", "X-Title": "Vision Tetris POC"})
                     if response.is_error:
                         raise RuntimeError(f"OpenRouter HTTP {response.status_code}; stopped without retry.")
+                    inference_ms = (time.monotonic() - inference_started) * 1000
                     payload = response.json()
                     actual = payload.get("usage", {}).get("cost")
                     if type(actual) in (float, int) and math.isfinite(actual) and actual >= 0:
@@ -183,26 +166,27 @@ async def run(args):
                     age = time.monotonic() - captured
                     applied = age <= args.max_age and spent <= args.budget and time.monotonic() - start < args.seconds
                     record = {"step": number, "action": action, "applied": applied,
-                        "frame_age_ms": round(age * 1000), "spent": spent,
+                        "frame_age_ms": round(age * 1000), "capture_encode_ms": round(capture_ms),
+                        "inference_ms": round(inference_ms), "spent": spent,
                         "crop": args.crop, "request_id": payload.get("id"), "model": payload.get("model"), "request_cost": actual,
                         "provider": payload.get("provider"), "usage": payload.get("usage"),
                         "answers": payload["answers"], "sequence": ACTIONS[action]}
+                    execution_started = time.monotonic()
+                    if applied:
+                        await execute(page, action)
+                    record["execution_ms"] = round((time.monotonic() - execution_started) * 1000)
+                    record["applied"] = applied  # True only after executor returns successfully.
                     history.append({"action": action, "applied": applied, "inputs": ACTIONS[action] if applied else []})
                     log.write(json.dumps(record) + "\n")
                     log.flush()
-                    print(f"{number}: {action} {'applied' if applied else 'discarded'} {age:.2f}s ${spent:.6f}")
+                    print(f"{number}: {action} {'applied' if applied else 'discarded'} "
+                          f"capture={capture_ms:.0f}ms inference={inference_ms:.0f}ms "
+                          f"input={record['execution_ms']}ms ${spent:.6f}")
                     if spent >= args.budget:
                         break
-                    if applied:
-                        await execute(page, action)
-                    # Require a post-action frame, not the one captured before the input.
-                    after = time.monotonic()
-                    while latest[0] <= after and not capture_error:
-                        await asyncio.sleep(0.025)
+                    # Allow a rendered frame after key release before the next capture.
+                    await page.wait_for_timeout(35)
         finally:
-            if task:
-                task.cancel()
-                await asyncio.gather(task, return_exceptions=True)
             for key_name in {key for sequence in ACTIONS.values() for key, _ in sequence}:
                 if key_name:
                     try:

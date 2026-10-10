@@ -68,3 +68,7 @@ Terminal 2:
 uv run python agent.py --model luna --url 'http://127.0.0.1:8765/?mode=turn&seed=42' --crop none
 ```
 The clone starts immediately. Press Enter in the agent terminal to begin. `--crop none` is required because the default official-site crop does not fit this layout. Use `mode=realtime` for normal gravity. Use the same seed for comparable piece order. Agent observation remains pixels only; the browser game exposes no telemetry API to the agent. Game-over requires manual Restart (agent no longer has stop/idle).
+
+## Sequential loop (current)
+
+The background screenshot task is removed. Each iteration captures/encodes one fresh screenshot, requests inference, validates and executes one basic operation, releases the key, waits 35ms for rendering, and then captures again. No screenshots overlap input or inference. The game still runs normally during inference unless using the clone's turn mode. Traces separate capture/encoding, API round-trip, and input-execution timing. An applied flag is logged only after successful execution; it does not verify game effect. This isolates observation scheduling, not all possible model/input problems.
