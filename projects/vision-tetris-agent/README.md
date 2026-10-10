@@ -38,3 +38,7 @@ The prompt emphasizes observe → plan → execute → observe. History includes
 ## Screenshot crop
 
 Default `--crop 285,15,390,575` extracts the game panel (board, score, hold and next) from the fixed 960x720 viewport and enlarges it 2x. This is a pixel crop, not DOM reading or game-state extraction. Adjust if the site layout changes. `--crop none` restores full-page observation. Saved decision screenshots are exactly the cropped JPEGs sent to the API. No previous-frame input has been added; existing action history remains unchanged.
+
+## Compact decisions (current default)
+
+Four independent choice heads share one request: rotation (4 choices), movement (-5..+5 taps), finish (observe/drop), and mode (play/hold/wait/stop). Mode gates execution; non-play modes discard the other planned inputs. The resulting sequence still uses the bounded executor above, but the model no longer receives the full 91-flow catalog. All returned heads/probabilities are saved under `answers` in the trace. Default model is now Luna. Independence means answers may conflict; no correctness guarantee is implied. Tests of live performance remain pending.

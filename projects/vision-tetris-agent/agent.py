@@ -65,6 +65,39 @@ FLOW_PROMPT = (
 )
 
 
+COMPACT_QUESTIONS = {
+    "rotation": {"type": "choice", "instructions": "Select rotation relative to the current active piece for a useful landing.",
+        "criteria": {"none": "No rotation", "cw": "One clockwise Up tap", "ccw": "One counterclockwise Z tap", "half": "Two clockwise Up taps"}},
+    "movement": {"type": "choice", "instructions": "Select horizontal taps after rotation to reach a useful landing; avoid moving into walls.",
+        "criteria": {str(i): f"{abs(i)} taps " + ("Left" if i < 0 else "Right" if i > 0 else "(no movement)") for i in range(-5, 6)}},
+    "finish": {"type": "choice", "instructions": "After rotation and movement, commit or observe? These questions do not see one another's answers. If the resulting landing is uncertain choose observe.",
+        "criteria": {"observe": "Release keys and observe fresh pixels before committing", "drop": "Hard drop last only if the resulting landing is useful"}},
+    "mode": {"type": "choice", "instructions": "Should the controller execute the planned rotation/movement/finish, hold the piece, wait for a transition, or stop? Other answers cannot be read by this question. Non-play modes discard their inputs.",
+        "criteria": {"play": "Active gameplay: execute the sequence", "hold": "Swap/hold with C and observe the replacement", "wait": "Brief loading/animation transition", "stop": "Game over, paused/menu or gameplay not visible"}},
+}
+
+
+def compact_action(payload):
+    selected = {}
+    for name, question in COMPACT_QUESTIONS.items():
+        answer = payload["answers"][name]
+        probs = answer["probabilities"]
+        if answer["choice"] not in question["criteria"] or set(probs) != set(question["criteria"]):
+            raise ValueError("Unexpected compact answer choices")
+        if any(type(p) not in (int, float) or not math.isfinite(p) or not 0 <= p <= 1 for p in probs.values()):
+            raise ValueError("Invalid compact probabilities")
+        if abs(sum(probs.values()) - 1) > .03:
+            raise ValueError("Invalid compact probability sum")
+        selected[name] = answer["choice"]
+    mode = selected["mode"]
+    if mode != "play":
+        return {"hold": "hold", "wait": "idle", "stop": "stop"}[mode]
+    rotation, shift, finish = selected["rotation"], int(selected["movement"]), selected["finish"]
+    if rotation == "none" and shift == 0 and finish == "observe":
+        return "idle"
+    return f"flow_{rotation}_{shift:+d}_{finish}"
+
+
 def encode_frame(png, crop=None):
     image = Image.open(io.BytesIO(png)).convert("RGB")
     if crop:
@@ -174,9 +207,7 @@ async def run(args):
                         "state": [context, {"type": "image_url", "image_url": {
                             "url": "data:image/jpeg;base64," + base64.b64encode(frame).decode()
                         }}],
-                        "questions": {"action": {"type": "choice", "instructions":
-                            "Which short rotate-move-observe/drop flow best advances a useful landing and scoring?",
-                            "criteria": CRITERIA}},
+                        "questions": COMPACT_QUESTIONS,
                     }
                     # No automatic retries: ambiguous failures may have incurred a charge.
                     spent += args.reserve
@@ -190,14 +221,14 @@ async def run(args):
                         spent += actual - args.reserve
                     else:
                         raise RuntimeError("Missing billing cost; stopping conservatively.")
-                    action = validate(payload)
+                    action = compact_action(payload)
                     age = time.monotonic() - captured
                     applied = age <= args.max_age and spent <= args.budget and time.monotonic() - start < args.seconds
                     record = {"step": number, "action": action, "applied": applied,
                         "frame_age_ms": round(age * 1000), "spent": spent,
                         "crop": args.crop, "request_id": payload.get("id"), "model": payload.get("model"), "request_cost": actual,
                         "provider": payload.get("provider"), "usage": payload.get("usage"),
-                        "answer": payload["answers"]["action"], "sequence": ACTIONS[action]}
+                        "answers": payload["answers"], "sequence": ACTIONS[action]}
                     history.append({"action": action, "applied": applied, "inputs": ACTIONS[action] if applied else []})
                     log.write(json.dumps(record) + "\n")
                     log.flush()
@@ -230,7 +261,7 @@ async def run(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--crop", default="285,15,390,575", help="Screenshot region x,y,width,height; use 'none' for full viewport. Default includes board, score, hold and next in 960x720 viewport.")
-    parser.add_argument("--model", choices=MODELS, default="flash")
+    parser.add_argument("--model", choices=MODELS, default="luna")
     parser.add_argument("--url", default="https://play.tetris.com/")
     parser.add_argument("--seconds", type=float, default=120)
     parser.add_argument("--budget", type=float, default=1)
