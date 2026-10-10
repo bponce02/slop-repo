@@ -54,3 +54,17 @@ One `action` choice question now selects among 11 basic operations: idle, left/r
 `stop` has been removed from model choices. The model has 10 basic operations and can choose idle when gameplay is not visible. Runs end by time/budget limits, errors, or manual Ctrl+C—not a model decision.
 
 `idle` is also removed. All nine model choices send a game input. Start/focus gameplay manually; there is no model-selected wait or stop. Time/budget limits, errors and Ctrl+C still terminate the run. During menus/transitions, the model may select an inappropriate input because abstention is unavailable.
+
+## Local clone: isolate model quality from latency
+
+Plain HTML/CSS/JS game, no build tools. Turn mode disables automatic gravity entirely: only Down or Space advances/locks pieces. This deliberately avoids wasting thinking time or consuming vertical space on movement/rotation. Simplified rotation kicks, seven-bag seeded pieces, next/hold, line-clear and drop scoring. Not an exact official Tetris implementation.
+
+Terminal 1 (from project folder):
+```sh
+python -m http.server 8765 --bind 127.0.0.1 --directory game
+```
+Terminal 2:
+```sh
+uv run python agent.py --model luna --url 'http://127.0.0.1:8765/?mode=turn&seed=42' --crop none
+```
+The clone starts immediately. Press Enter in the agent terminal to begin. `--crop none` is required because the default official-site crop does not fit this layout. Use `mode=realtime` for normal gravity. Use the same seed for comparable piece order. Agent observation remains pixels only; the browser game exposes no telemetry API to the agent. Game-over requires manual Restart (agent no longer has stop/idle).
