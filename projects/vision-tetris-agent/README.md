@@ -72,3 +72,13 @@ The clone starts immediately. Press Enter in the agent terminal to begin. `--cro
 ## Sequential loop (current)
 
 The background screenshot task is removed. Each iteration captures/encodes one fresh screenshot, requests inference, validates and executes one basic operation, releases the key, waits 35ms for rendering, and then captures again. No screenshots overlap input or inference. The game still runs normally during inference unless using the clone's turn mode. Traces separate capture/encoding, API round-trip, and input-execution timing. An applied flag is logged only after successful execution; it does not verify game effect. This isolates observation scheduling, not all possible model/input problems.
+
+## Liquid d1-ultra
+
+Use `--model d1-ultra` for `liquid/d1-ultra` through OpenRouter Decisions. Enable Liquid in your allowed providers. The initial screenshot probe took about 7 seconds; the default 1.5-second freshness cutoff would discard a response that slow. For the no-gravity clone, use:
+
+```sh
+uv run python agent.py --model d1-ultra --url 'http://127.0.0.1:8765/?mode=turn&seed=42' --crop none --max-age 10
+```
+
+For the official site: `uv run python agent.py --model d1-ultra --max-age 10`. Increasing max-age permits delayed decisions, not faster inference; real-time gameplay may suffer. Requests time out at 10 seconds. Existing per-run budget/time limits remain.

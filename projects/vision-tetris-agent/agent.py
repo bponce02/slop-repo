@@ -18,6 +18,7 @@ MODELS = {
     "luna": "openai/gpt-6-luna-decisions",
     "clef": "cloudflare/clef",
     "flash": "cloudflare/clef-flash",
+    "d1-ultra": "liquid/d1-ultra",
 }
 # One question over basic operations; no compound flows.
 ACTIONS = {
