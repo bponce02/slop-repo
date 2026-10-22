@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/CrossTheRoadElec/Phoenix6-Examples",
+  "revision": "b5d4978b3ee59bf463dc19281648ed06a2d74190",
+  "example": "java/SwerveWithPathPlanner",
+  "phoenix": "26.3.0",
+  "note": "Reference only; not included in runnable browser project"
+}
