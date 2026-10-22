@@ -12,19 +12,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 /** Four Kraken X60s, two per side. Browser output is voltage, not Phoenix CAN. */
 public class DriveSubsystem extends SubsystemBase {
   public static DriveSubsystem instance;
-  public DriveSubsystem(){instance=this;}
+  public DriveSubsystem(){instance=this;frc.browser.BrowserIO.resetHandler=this::reset;}
   @Override public void simulationPeriodic(){
-    if(!frc.browser.BrowserIO.enabled)stop();
+    if(edu.wpi.first.wpilibj.DriverStation.isDisabled())stop();
     step();publish();
   }
   private double leftVolts, rightVolts;
   private final DifferentialDrivetrainSim physics = new DifferentialDrivetrainSim(
-      DCMotor.getKrakenX60(2), 10.71, 7.5, 60.0, 0.0762, 0.62, null) {
-    @Override
-    protected Matrix<N2, N1> clampInput(Matrix<N2, N1> input) {
-      return StateSpaceUtil.desaturateInputVector(input, 12.0);
-    }
-  };
+      DCMotor.getKrakenX60(2), 10.71, 7.5, 60.0, 0.0762, 0.62, null);
 
   public void tankDrive(double left, double right) {
     // Edit this multiplier and rebuild to change how the robot drives.

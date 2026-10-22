@@ -1,6 +1,6 @@
 import {createRobotView} from './robot-view.js';
 export function startScene(){
- const canvas=document.getElementById('field'),draw=createRobotView(canvas),keys=new Set();let reset=false,connected=false,lv=0,rv=0;let enabled=false,estop=false,x=0,y=0,h=0,l=0,r=0,dl=0,dr=0;
+ const canvas=document.getElementById('field'),keys=new Set();let draw=()=>{};try{draw=createRobotView(canvas);}catch(e){document.getElementById('terminal').textContent+='3D unavailable: '+e.message+' (simulation controls still active)\n';}let reset=false,connected=false,lv=0,rv=0;let enabled=false,estop=false,x=0,y=0,h=0,l=0,r=0,dl=0,dr=0;
  const $=id=>document.getElementById(id),disable=()=>{enabled=false;keys.clear();};
  $('enable').onclick=()=>{if(!estop&&connected)enabled=true;};$('disable').onclick=disable;$('estop').onclick=()=>{estop=true;disable();};$('pose-reset').onclick=()=>{disable();estop=false;reset=true;};
  $('mode').addEventListener('change',disable);

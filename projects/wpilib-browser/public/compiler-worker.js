@@ -17,6 +17,6 @@ onmessage=async({data})=>{await ready;try{
  for(const [path,text] of Object.entries(data.files))if(path.endsWith(".java"))compiler.addSourceFile(path.replace(/^src\/main\/java\//,""),text);
  if(data.mainClass==="frc.robot.Main") {const bridge=await(await fetch("./bridge.json")).json();for(const [path,text] of Object.entries(bridge))compiler.addSourceFile(path,text);}
  send("diagnostic",{text:"[javac]"});if(!compiler.compile())return send('failed');
-  send("diagnostic",{text:"[TeaVM]"});if(!compiler.generateWebAssembly({outputName:'robot',mainClass:data.mainClass}))return send('failed');
+  send("diagnostic",{text:"[TeaVM]"});if(!compiler.generateWebAssembly({outputName:'robot',mainClass:data.mainClass==="frc.robot.Main"?"frc.browser.BrowserEntry":data.mainClass}))return send('failed');
  send('compiled',{wasm:compiler.getWebAssemblyOutputFile('robot.wasm')});
 }catch(e){send('error',{text:e.stack||String(e)});}};

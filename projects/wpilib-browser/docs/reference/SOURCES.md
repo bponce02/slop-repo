@@ -1,0 +1,1 @@
+Reference files are copied from https://github.com/wpilibsuite/allwpilib/tree/v2025.3.2/wpilibj/src/main/java/edu/wpi/first/wpilibj (and simulation/DriverStationSim.java), under WPILib BSD licensing. Used to inspect lifecycle ordering and native JNI injection boundaries.

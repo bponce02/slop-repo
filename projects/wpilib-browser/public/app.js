@@ -1,20 +1,20 @@
-import {startScene} from './scene.js';
+import {startScene} from './scene.js?v=20261022-6';
 const $=id=>document.getElementById(id),log=t=>{$('terminal').textContent+=t+'\n';$('terminal').scrollTop=1e9;};
-let files=JSON.parse(localStorage.getItem('robot-files-v3-official')||'null')||await(await fetch('starter.json')).json();
+let files=JSON.parse(localStorage.getItem('robot-files-v4-sim-adapters')||'null')||await(await fetch('starter.json')).json();
 let robotReady=false,tickPending=false;
 let worker,runner,busy=false,history=[],pending=null;
 function controls(ready){$('eval').disabled=$('run').disabled=!ready;}
 function idle(){busy=false;controls(true);$('status').textContent='Ready • WPILib 2025.3.2';}
-function start(){controls(false);$('status').textContent='Loading compiler + bundled WPILib…';worker=new Worker('./compiler-worker.js?v=20261022-2',{type:'module'});worker.onerror=e=>{log('Worker error: '+e.message);$('status').textContent='Failed';};worker.onmessage=({data:d})=>{
+function start(){controls(false);$('status').textContent='Loading compiler + bundled WPILib…';worker=new Worker('./compiler-worker.js?v=20261022-6',{type:'module'});worker.onerror=e=>{log('Worker error: '+e.message);$('status').textContent='Failed';};worker.onmessage=({data:d})=>{
  if(d.type==='ready'){idle();log('Java compiler ready. WPILib JARs loaded locally.');}
- else if(d.type==='compiled'){runner?.terminate();runner=new Worker('./run-worker.js?v=20261022-2',{type:'module'});runner.onerror=e=>{log(e.message);pending=null;idle();};runner.onmessage=({data:r})=>{if(r.type==='state')window.dispatchEvent(new CustomEvent('robot-state',{detail:r.values}));if(r.type==='ticked')tickPending=false;if(r.type==='robot-ready'){robotReady=true;tickPending=false;idle();log('[robot running]');}if(r.text)log(r.text);if(r.type==='done'){if(pending!==null)history.push(pending);pending=null;idle();log('[finished]');}if(r.type==='error'){robotReady=false;tickPending=false;window.dispatchEvent(new Event('robot-disconnected'));pending=null;idle();}};runner.postMessage({wasm:d.wasm});}
+ else if(d.type==='compiled'){runner?.terminate();runner=new Worker('./run-worker.js?v=20261022-6',{type:'module'});runner.onerror=e=>{log(e.message);pending=null;idle();};runner.onmessage=({data:r})=>{if(r.type==='state')window.dispatchEvent(new CustomEvent('robot-state',{detail:r.values}));if(r.type==='ticked')tickPending=false;if(r.type==='robot-ready'){robotReady=true;tickPending=false;idle();log('[robot running]');}if(r.text)log(r.text);if(r.type==='done'){if(pending!==null)history.push(pending);pending=null;idle();log('[finished]');}if(r.type==='error'){robotReady=false;tickPending=false;window.dispatchEvent(new Event('robot-disconnected'));pending=null;idle();}};runner.postMessage({wasm:d.wasm});}
  else if(d.type==='error'||d.type==='failed'){if(d.text)log(d.text);log('[compilation failed]');pending=null;idle();}
  else if(d.text)log(d.text);
 };}
-function save(){files[$('file').value]=$('editor').value;localStorage.setItem('robot-files-v3-official',JSON.stringify(files));}
+function save(){files[$('file').value]=$('editor').value;localStorage.setItem('robot-files-v4-sim-adapters',JSON.stringify(files));}
 function showFiles(){ $('file').replaceChildren(...Object.keys(files).map(name=>new Option(name,name)));if(files['src/main/java/frc/robot/Robot.java'])$('file').value='src/main/java/frc/robot/Robot.java';$('editor').value=files[$('file').value];}
 let selectedFile=$('file').value;
-$('file').onchange=()=>{files[selectedFile]=$('editor').value;localStorage.setItem('robot-files-v3-official',JSON.stringify(files));selectedFile=$('file').value;$('editor').value=files[selectedFile];};$('save').onclick=save;
+$('file').onchange=()=>{files[selectedFile]=$('editor').value;localStorage.setItem('robot-files-v4-sim-adapters',JSON.stringify(files));selectedFile=$('file').value;$('editor').value=files[selectedFile];};$('save').onclick=save;
 $('run').onclick=()=>{save();compile(files,'frc.robot.Main');};
 function compile(sources,mainClass){if(busy)return;robotReady=false;tickPending=false;window.dispatchEvent(new Event('robot-disconnected'));window.dispatchEvent(new Event('blur'));runner?.terminate();busy=true;controls(false);$('status').textContent='Compiling Java → Wasm…';log('$ javac + TeaVM');const javaSources=Object.fromEntries(Object.entries(sources).filter(([name])=>name.endsWith(".java")));log(`[sources: ${Object.keys(javaSources).length} Java files; non-Java files excluded]`);worker.postMessage({files:javaSources,mainClass});}
 $('eval').onclick=()=>{pending=$('snippet').value;compile({'Repl.java':`import edu.wpi.first.math.*;\nimport edu.wpi.first.math.util.*;\nimport edu.wpi.first.math.system.plant.*;\npublic class Repl { public static void main(String[] args) {\n${[...history,pending].join('\n')}\n}}`},'Repl');};
