@@ -1,0 +1,4 @@
+var sim = new edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim(DCMotor.getKrakenX60(2), 10.71, 7.5, 60.0, 0.0762, 0.62, null) { protected edu.wpi.first.math.Matrix<edu.wpi.first.math.numbers.N2, edu.wpi.first.math.numbers.N1> clampInput(edu.wpi.first.math.Matrix<edu.wpi.first.math.numbers.N2, edu.wpi.first.math.numbers.N1> u) { return edu.wpi.first.math.StateSpaceUtil.desaturateInputVector(u, 12.0); } };
+sim.setInputs(6, 6);
+for (int i=0;i<50;i++) sim.update(0.02);
+System.out.println("WPILib drivetrain distance: " + sim.getLeftPositionMeters());

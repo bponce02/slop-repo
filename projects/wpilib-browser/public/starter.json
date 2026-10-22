@@ -1,0 +1,3 @@
+{
+  "Main.java": "import edu.wpi.first.math.MathUtil;\npublic class Main { public static void main(String[] args) { System.out.println(\"WPILib: \" + MathUtil.clamp(2.0, -1, 1)); } }"
+}

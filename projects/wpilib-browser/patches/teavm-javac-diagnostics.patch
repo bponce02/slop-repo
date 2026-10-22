@@ -1,0 +1,13 @@
+diff --git a/compiler/src/main/java/org/teavm/javac/TeaVMDiagnostic.java b/compiler/src/main/java/org/teavm/javac/TeaVMDiagnostic.java
+index 5b059ae..4c66055 100644
+--- a/compiler/src/main/java/org/teavm/javac/TeaVMDiagnostic.java
++++ b/compiler/src/main/java/org/teavm/javac/TeaVMDiagnostic.java
+@@ -55,7 +55,7 @@ public class TeaVMDiagnostic extends BaseDiagnostic {
+             problem.render(consumer);
+             message = consumer.getText();
+         }
+-        return problem.getText();
++        return message;
+     }
+ 
+     @Override

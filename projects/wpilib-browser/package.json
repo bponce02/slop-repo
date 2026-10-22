@@ -1,0 +1,11 @@
+{
+  "name": "wpilib-browser-lab",
+  "private": true,
+  "scripts": {
+    "test": "node tests/browser-smoke.cjs",
+    "test:physics": "node tests/browser-physics.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.58.0"
+  }
+}

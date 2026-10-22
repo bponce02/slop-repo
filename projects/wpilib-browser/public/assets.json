@@ -1,0 +1,184 @@
+[
+  {
+    "path": "vendor/compiler.wasm",
+    "url": "https://teavm.org/playground/3/compiler.wasm",
+    "build": "teavm-javac 208d4c97a602 + diagnostic patch + runtime-src sequential subset",
+    "sha256": "cabac0402e7cc19ad8559039a463354bf66cb8dcc5d852a846b29bbecbac8d60",
+    "bytes": 4707677
+  },
+  {
+    "path": "vendor/compiler.wasm-runtime.js",
+    "url": "https://teavm.org/playground/3/compiler.wasm-runtime.js",
+    "build": "teavm-javac 208d4c97a602 + diagnostic patch + runtime-src sequential subset",
+    "sha256": "d4fc035b410f444f79f49e3890643b8bfd644a02dcfc597e3fcaa8a07bafca08",
+    "bytes": 16425
+  },
+  {
+    "path": "vendor/compile-classlib-teavm.bin",
+    "url": "https://teavm.org/playground/3/compile-classlib-teavm.bin",
+    "build": "teavm-javac 208d4c97a602 + diagnostic patch + runtime-src sequential subset",
+    "sha256": "1f7b98a3b83a008f7f9dbde70e1f49df4294101e41060b58c02608879bff3c74",
+    "bytes": 215265
+  },
+  {
+    "path": "vendor/runtime-classlib-teavm.bin",
+    "url": "https://teavm.org/playground/3/runtime-classlib-teavm.bin",
+    "build": "teavm-javac 208d4c97a602 + diagnostic patch + runtime-src sequential subset",
+    "sha256": "b0672e419f38ba5f4ed399cb00fa8b6c9e4a965dd042b39271bd8faa58fe4571",
+    "bytes": 2315020
+  },
+  {
+    "path": "lib/wpimath-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/wpimath/wpimath-java/2025.3.2/wpimath-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "46cb4e1132566b2cf002e7f01caee7a5cc5b8c9dab7fccd6b74c1f5e74ca85b1",
+    "bytes": 587114
+  },
+  {
+    "path": "lib/wpiutil-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/wpiutil/wpiutil-java/2025.3.2/wpiutil-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "f881ba112e17e1b5fcd45d8324a3f03a6b12d094d1af40525233c72d2dfac12d",
+    "bytes": 127222
+  },
+  {
+    "path": "lib/wpiunits-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/wpiunits/wpiunits-java/2025.3.2/wpiunits-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "db19d6066cb2bc8efd19fa3bb6c9f386367d2f8ec546d898a9882e8ae5f09608",
+    "bytes": 315316
+  },
+  {
+    "path": "lib/wpilibj-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/wpilibj/wpilibj-java/2025.3.2/wpilibj-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "774f9021a5062278561dedd72c90853eb64befd49fb6b88ed7b6a032779de2d3",
+    "bytes": 505030
+  },
+  {
+    "path": "lib/wpilibNewCommands-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/wpilibNewCommands/wpilibNewCommands-java/2025.3.2/wpilibNewCommands-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "7d85256839a50ee478576be9587dffe665d6d7775960fc987bac32f7bce1b7de",
+    "bytes": 97354
+  },
+  {
+    "path": "lib/hal-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/hal/hal-java/2025.3.2/hal-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "63d07acdacb0d5b89a7b4c916592b0723d5b8a9bd232f69fb5ca7809109c4912",
+    "bytes": 81877
+  },
+  {
+    "path": "lib/ntcore-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/ntcore/ntcore-java/2025.3.2/ntcore-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "164fa069a57c9d2c8ee48517de28299d4bb4a62e136517176157e0ecf56d5ddb",
+    "bytes": 135236
+  },
+  {
+    "path": "lib/wpinet-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/wpinet/wpinet-java/2025.3.2/wpinet-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "b8a10529c75e9110629aa2e831610dd55b67f8b03b16e84faf14c14f2d255a23",
+    "bytes": 7192
+  },
+  {
+    "path": "lib/cscore-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/cscore/cscore-java/2025.3.2/cscore-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "24675c0c39cf67eb09dc9d6a84bd6a802dc203a832ad3b6c927c277ad719a933",
+    "bytes": 40022
+  },
+  {
+    "path": "lib/cameraserver-java.jar",
+    "url": "https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/cameraserver/cameraserver-java/2025.3.2/cameraserver-java-2025.3.2.jar",
+    "build": null,
+    "sha256": "bf109e0302041199860c182e9238dc0cdf244e0d5a5772e3c8b4784484424f2c",
+    "bytes": 20228
+  },
+  {
+    "path": "lib/ejml-simple.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/ejml/ejml-simple/0.43.1/ejml-simple-0.43.1.jar",
+    "build": null,
+    "sha256": "348acd004027e1e0719b76cac6432d368640489eb3d619508275fd37373acb0d",
+    "bytes": 204000
+  },
+  {
+    "path": "lib/ejml-core.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/ejml/ejml-core/0.43.1/ejml-core-0.43.1.jar",
+    "build": null,
+    "sha256": "04136b8fabedf92c218914da3a837e27ba0aefbf924444d2aac243f77dbf208d",
+    "bytes": 268866
+  },
+  {
+    "path": "lib/ejml-ddense.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/ejml/ejml-ddense/0.43.1/ejml-ddense-0.43.1.jar",
+    "build": null,
+    "sha256": "bb3d00c111868673d35f1aca24de7fe72b970c47dc44295f510684b2be6eb7ce",
+    "bytes": 408363
+  },
+  {
+    "path": "lib/ejml-fdense.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/ejml/ejml-fdense/0.43.1/ejml-fdense-0.43.1.jar",
+    "build": null,
+    "sha256": "67dc4bebaa52a9864c2028ad150444a22227792a712bbc13f5d0c1ebe836b029",
+    "bytes": 406935
+  },
+  {
+    "path": "lib/ejml-cdense.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/ejml/ejml-cdense/0.43.1/ejml-cdense-0.43.1.jar",
+    "build": null,
+    "sha256": "20c96f2b25facf9014c46c6d0e0139e2c1bbec7954411e9eb1b4c53ef7eaef6d",
+    "bytes": 86531
+  },
+  {
+    "path": "lib/ejml-zdense.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/ejml/ejml-zdense/0.43.1/ejml-zdense-0.43.1.jar",
+    "build": null,
+    "sha256": "dc47e7395fb7dd3652f0f2e82566f193824ba3762fc709487e03d76bba13e070",
+    "bytes": 87006
+  },
+  {
+    "path": "lib/ejml-dsparse.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/ejml/ejml-dsparse/0.43.1/ejml-dsparse-0.43.1.jar",
+    "build": null,
+    "sha256": "5b15d7d06e88d0384ed40358127f3358cab462ad4d273da1763e9f5282ad27e1",
+    "bytes": 96034
+  },
+  {
+    "path": "lib/ejml-fsparse.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/ejml/ejml-fsparse/0.43.1/ejml-fsparse-0.43.1.jar",
+    "build": null,
+    "sha256": "23ef080a75893f7d1b0b2f16bd937ddbc4199a2999c246d905a55663a4d54a91",
+    "bytes": 95287
+  },
+  {
+    "path": "lib/quickbuf-runtime.jar",
+    "url": "https://repo.maven.apache.org/maven2/us/hebi/quickbuf/quickbuf-runtime/1.3.3/quickbuf-runtime-1.3.3.jar",
+    "build": null,
+    "sha256": "7af02629bb416fa78dae39984fad1b20d5637dbffd47ff4849f1599e95ec5b1c",
+    "bytes": 175144
+  },
+  {
+    "path": "lib/jackson-annotations.jar",
+    "url": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.jar",
+    "build": null,
+    "sha256": "04e21f94dcfee4b078fa5a5f53047b785aaba69d19de392f616e7a7fe5d3882f",
+    "bytes": 75567
+  },
+  {
+    "path": "lib/jackson-core.jar",
+    "url": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.jar",
+    "build": null,
+    "sha256": "303c99e82b1faa91a0bae5d8fbeb56f7e2adf9b526a900dd723bf140d62bd4b4",
+    "bytes": 549207
+  },
+  {
+    "path": "lib/jackson-databind.jar",
+    "url": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.15.2/jackson-databind-2.15.2.jar",
+    "build": null,
+    "sha256": "0eb2fdad6e40ab8832a78c9b22f58196dd970594e8d3d5a26ead87847c4f3a96",
+    "bytes": 1620088
+  }
+]
