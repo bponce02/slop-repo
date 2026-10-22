@@ -1,0 +1,450 @@
+[
+  {
+    "artifact": "api-cpp",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/api-cpp/26.3.0/api-cpp-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "api-cpp",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/api-cpp/26.3.0/api-cpp-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=c032075d9e5745eacdba4f0e658ae3b82170a3fc, not stripped"
+    ]
+  },
+  {
+    "artifact": "api-cpp",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/api-cpp/26.3.0/api-cpp-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=fc1951ccaf4268826dd974c4b4677f605440804c, not stripped"
+    ]
+  },
+  {
+    "artifact": "api-cpp",
+    "platform": "linuxathena",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/api-cpp/26.3.0/api-cpp-26.3.0-linuxathena.zip",
+    "binaries": [
+      "ELF 32-bit LSB shared object, ARM, EABI5 version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=335a9c97460a6b98582af5aa6955c5f044afc5e9, not stripped"
+    ]
+  },
+  {
+    "artifact": "tools",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/tools/26.3.0/tools-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "tools",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/tools/26.3.0/tools-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=ad63c44cf78848c2a37037c64f293476e3b84ca0, stripped"
+    ]
+  },
+  {
+    "artifact": "tools",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/tools/26.3.0/tools-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=0cbc646370b76b1faf049423998d2dd854a16e79, stripped"
+    ]
+  },
+  {
+    "artifact": "tools",
+    "platform": "linuxathena",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/tools/26.3.0/tools-26.3.0-linuxathena.zip",
+    "binaries": [
+      "ELF 32-bit LSB shared object, ARM, EABI5 version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=054dead34fbf65674728c979faf17cf4af8ac67d, stripped"
+    ]
+  },
+  {
+    "artifact": "api-cpp-sim",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/api-cpp-sim/26.3.0/api-cpp-sim-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "api-cpp-sim",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/api-cpp-sim/26.3.0/api-cpp-sim-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=ff4731109f0b7d20cf01a3e5d0c9aeeeb1ab3c9f, not stripped"
+    ]
+  },
+  {
+    "artifact": "api-cpp-sim",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/api-cpp-sim/26.3.0/api-cpp-sim-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=04971f8b6a1ca9f6b2ce167b5bfd53c36756bde5, not stripped"
+    ]
+  },
+  {
+    "artifact": "api-cpp-sim",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/api-cpp-sim/26.3.0/api-cpp-sim-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS|HAS_TLV_DESCRIPTORS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS|HAS_TLV_DESCRIPTORS>]"
+    ]
+  },
+  {
+    "artifact": "tools-sim",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/tools-sim/26.3.0/tools-sim-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "tools-sim",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/tools-sim/26.3.0/tools-sim-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=082740314c10f3c65c017bf1f91996d9f00a9b9e, stripped"
+    ]
+  },
+  {
+    "artifact": "tools-sim",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/tools-sim/26.3.0/tools-sim-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=0e9d13a23906d2e4520bd2e14b208646249f4fc5, stripped"
+    ]
+  },
+  {
+    "artifact": "tools-sim",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/tools-sim/26.3.0/tools-sim-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simTalonSRX",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simTalonSRX/26.3.0/simTalonSRX-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simTalonSRX",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simTalonSRX/26.3.0/simTalonSRX-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=fc4466bf08bd4b560f4d342c11161d10cbd82ef1, stripped"
+    ]
+  },
+  {
+    "artifact": "simTalonSRX",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simTalonSRX/26.3.0/simTalonSRX-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=b9487ac0638d77a1044034cd03c258a0bb9b20f6, stripped"
+    ]
+  },
+  {
+    "artifact": "simTalonSRX",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simTalonSRX/26.3.0/simTalonSRX-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simVictorSPX",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simVictorSPX/26.3.0/simVictorSPX-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simVictorSPX",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simVictorSPX/26.3.0/simVictorSPX-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=31c699cbca3ab90c00f718c74d2295215d19657a, stripped"
+    ]
+  },
+  {
+    "artifact": "simVictorSPX",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simVictorSPX/26.3.0/simVictorSPX-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=1b9d81242f44781f326cafc5683818bd646428ef, stripped"
+    ]
+  },
+  {
+    "artifact": "simVictorSPX",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simVictorSPX/26.3.0/simVictorSPX-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simPigeonIMU",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simPigeonIMU/26.3.0/simPigeonIMU-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simPigeonIMU",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simPigeonIMU/26.3.0/simPigeonIMU-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=54b363100c12de778c408b45de01673aedbe56aa, stripped"
+    ]
+  },
+  {
+    "artifact": "simPigeonIMU",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simPigeonIMU/26.3.0/simPigeonIMU-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=f3b3d6c513db3daac13051090506c7e38b22bab7, stripped"
+    ]
+  },
+  {
+    "artifact": "simPigeonIMU",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simPigeonIMU/26.3.0/simPigeonIMU-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simProTalonFX",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProTalonFX/26.3.0/simProTalonFX-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simProTalonFX",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProTalonFX/26.3.0/simProTalonFX-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=a0bb8be4d18649462d45bbebccd9e072b8287d34, stripped"
+    ]
+  },
+  {
+    "artifact": "simProTalonFX",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProTalonFX/26.3.0/simProTalonFX-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=59a532468097e0890b577d7f30b8695df49ad1a5, stripped"
+    ]
+  },
+  {
+    "artifact": "simProTalonFX",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProTalonFX/26.3.0/simProTalonFX-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simProTalonFXS",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProTalonFXS/26.3.0/simProTalonFXS-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simProTalonFXS",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProTalonFXS/26.3.0/simProTalonFXS-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=8c35997f4dc5d87c8826aa9f37ae6fb0abfdbac9, stripped"
+    ]
+  },
+  {
+    "artifact": "simProTalonFXS",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProTalonFXS/26.3.0/simProTalonFXS-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=b662bd3a6f5d3f4eacdd0abd0c77cbddc55d825c, stripped"
+    ]
+  },
+  {
+    "artifact": "simProTalonFXS",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProTalonFXS/26.3.0/simProTalonFXS-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simProCANcoder",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANcoder/26.3.0/simProCANcoder-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simProCANcoder",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANcoder/26.3.0/simProCANcoder-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=54ff00328495bbbf7989a69c4fe872f30fe9b97b, stripped"
+    ]
+  },
+  {
+    "artifact": "simProCANcoder",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANcoder/26.3.0/simProCANcoder-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=097137413ad55a749d94c45128b9f699a2c9c1b6, stripped"
+    ]
+  },
+  {
+    "artifact": "simProCANcoder",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANcoder/26.3.0/simProCANcoder-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simProPigeon2",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProPigeon2/26.3.0/simProPigeon2-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simProPigeon2",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProPigeon2/26.3.0/simProPigeon2-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=2816f6819e29b7f338f1e1592cf869806a2b001a, stripped"
+    ]
+  },
+  {
+    "artifact": "simProPigeon2",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProPigeon2/26.3.0/simProPigeon2-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=f0bdf7e9e3fe775e7f2e685c799ac9eab1e5e297, stripped"
+    ]
+  },
+  {
+    "artifact": "simProPigeon2",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProPigeon2/26.3.0/simProPigeon2-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simProCANrange",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANrange/26.3.0/simProCANrange-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simProCANrange",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANrange/26.3.0/simProCANrange-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=7ab7342f9cc3270fac4cd3299d9dde48c7c3345d, stripped"
+    ]
+  },
+  {
+    "artifact": "simProCANrange",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANrange/26.3.0/simProCANrange-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=69e7105d33f2a246ff062a8ec2e37d6d5f14f991, stripped"
+    ]
+  },
+  {
+    "artifact": "simProCANrange",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANrange/26.3.0/simProCANrange-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simProCANdi",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANdi/26.3.0/simProCANdi-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simProCANdi",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANdi/26.3.0/simProCANdi-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=9f157fb913a3e63011427af8533edffd6de095df, stripped"
+    ]
+  },
+  {
+    "artifact": "simProCANdi",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANdi/26.3.0/simProCANdi-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=b1f639fb89b903db83e3fe44a01ef678953dd54b, stripped"
+    ]
+  },
+  {
+    "artifact": "simProCANdi",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANdi/26.3.0/simProCANdi-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  },
+  {
+    "artifact": "simProCANdle",
+    "platform": "windowsx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANdle/26.3.0/simProCANdle-26.3.0-windowsx86-64.zip",
+    "binaries": [
+      "PE32+ executable for MS Windows 6.00 (DLL), x86-64, 5 sections"
+    ]
+  },
+  {
+    "artifact": "simProCANdle",
+    "platform": "linuxx86-64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANdle/26.3.0/simProCANdle-26.3.0-linuxx86-64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=b6364e01820158217ca3cd551a950bfc109626e7, stripped"
+    ]
+  },
+  {
+    "artifact": "simProCANdle",
+    "platform": "linuxarm64",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANdle/26.3.0/simProCANdle-26.3.0-linuxarm64.zip",
+    "binaries": [
+      "ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=5ca15cb8338470b0ab0487cd624bc2b683122595, stripped"
+    ]
+  },
+  {
+    "artifact": "simProCANdle",
+    "platform": "osxuniversal",
+    "url": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/sim/simProCANdle/26.3.0/simProCANdle-26.3.0-osxuniversal.zip",
+    "binaries": [
+      "Mach-O universal binary with 2 architectures: [x86_64:\\012- Mach-O 64-bit x86_64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|WEAK_DEFINES|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>] [\\012- arm64:\\012- Mach-O 64-bit arm64 dynamically linked shared library, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|BINDS_TO_WEAK|NO_REEXPORTED_DYLIBS>]"
+    ]
+  }
+]

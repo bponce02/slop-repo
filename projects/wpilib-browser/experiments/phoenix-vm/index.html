@@ -1,0 +1,9 @@
+<!doctype html><link rel="stylesheet" href="assets/xterm.css"><body style="background:#111;color:#ddd"><h3>Phoenix Linux VM probe</h3><div id="terminal"></div><script src="assets/xterm.js"></script><script src="assets/xterm-pty.js"></script><script type="module">
+import init from './assets/out.js';
+window.addEventListener('error',e=>document.body.append(' ERROR '+e.message));window.addEventListener('unhandledrejection',e=>document.body.append(' ERROR '+e.reason));
+const term=new Terminal({cols:110,rows:38});term.open(document.getElementById('terminal'));const {master,slave}=openpty();term.loadAddon(master);
+const names=['kernel','initramfs.gz','bios-256k.bin','vgabios-stdvga.bin','kvmvapic.bin','linuxboot_dma.bin'];const files=await Promise.all(names.map(async n=>[n,new Uint8Array(await(await fetch('assets/'+n)).arrayBuffer())]));
+const m={print:t=>term.writeln(t),printErr:t=>term.writeln('QEMU: '+t),pty:slave,mainScriptUrlOrBlob:new URL('./assets/out.js',location.href).href,locateFile:n=>'assets/'+n,arguments:['-nographic','-M','pc','-m','512M','-accel','tcg,tb-size=128','-L','/pack','-nic','none','-kernel','/pack/kernel','-initrd','/pack/initramfs.gz','-append','console=ttyS0 rdinit=/init noapic quiet'],preRun:[mod=>{mod.FS.mkdir('/pack');for(const[n,b]of files)mod.FS.writeFile('/pack/'+n,b);}]};await init(m);
+const oldPoll=m.TTY.stream_ops.poll;m.TTY.stream_ops.poll=(stream,timeout)=>!m.pty.readable?((m.pty.readable?1:0)|(m.pty.writable?4:0)):oldPoll(stream,timeout);
+
+</script>

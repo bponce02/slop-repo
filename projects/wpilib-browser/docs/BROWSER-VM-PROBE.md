@@ -1,0 +1,27 @@
+# Actual Phoenix browser VM feasibility probe
+
+Tested upstream https://ktock.github.io/qemu-wasm-demo/alpine-x86_64.html in desktop Chromium. QEMU/Wasm booted Linux 6.12.43 x86_64 / Alpine 3.21 and accepted root login. `uname -m` returned x86_64. `ldd --version` returned musl 1.2.5. No java executable was installed. The demo exposes 512MB guest RAM and ~235MB writable overlay space. Screenshot: tests/qemu-linux-probe.png.
+
+Actual Phoenix 26.3.0 Linux x86-64 api-cpp-sim ZIP was separately downloaded and inspected with file/readelf: ELF64 x86-64, requires GLIBC_2.35, libCTRE_PhoenixTools_Sim.so, libstdc++, libgcc, libm/libc and the glibc loader. It was NOT loaded or executed in the guest.
+
+Attempting to download the Phoenix ZIP from inside the demo returned HTTP 503 via its browser Fetch proxy. Cause was not isolated; CORS/network proxy restrictions are plausible, not proven. A self-hosted image can preload artifacts instead of relying on that proxy.
+
+CheerpX overview https://cheerpx.io/docs/overview explicitly targets 32-bit x86 executables. It is not directly compatible with this 64-bit Phoenix library.
+
+Next experiment: construct a glibc >=2.35 guest filesystem with Java, matching WPILib and Phoenix native simulation artifacts preinstalled; serve emulator and disk image on same origin with required cross-origin isolation. First verify java -version and native-library loading, then run a finite Phoenix smoke test. Success booting Linux is NOT success running Phoenix. No Phoenix/swerve performance claim has been established.
+
+Custom glibc initramfs built (~85MB unpacked) with minimal JRE and Phoenix libraries. Local QEMU boot failed before userspace with IO-APIC/timer kernel panic. Next configuration prepared: noapic; not tested yet. Phoenix has not executed. Probe files: /home/user/phoenix-vm-probe.
+
+## Confirmed native JNI success
+
+Clean Chromium session with noapic boot successfully ran Java 25 and Phoenix 26.3.0's unmodified Java wrapper and native simulation libraries inside QEMU/Wasm. Observed:
+
+```
+[phoenix] Library initialization is complete.
+PHOENIX_NATIVE_JNI_OK simulation=true time=33.737371
+[phoenix] Library shutdown cleanly
+```
+
+Smoke test calls UtilsJNI.isSimulation() and getCurrentTimeSeconds(). Screenshot: tests/phoenix-jni-success.png. This proves native JNI execution, NOT TalonFX control, swerve or real-time performance. Earlier empty/failed attempts were superseded by this successful clean session. noapic resolves the kernel timer panic. Static server provides files only; guest code runs in browser.
+
+Probe source saved under experiments/phoenix-vm; required emulator/kernel/rootfs assets remain outside the Git repo in /home/user/phoenix-vm-probe/assets. The experiment is not integrated into the normal editor app and is not yet a portable build. Browser requires secure context plus COOP/COEP; local desktop test used an insecure-origin-as-secure flag solely for the internal development hostname.
