@@ -1,0 +1,30 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::loadLibrary has been called by edu.wpi.first.util.RuntimeLoader in an unnamed module (file:/tmp/phoenix-root/opt/jars/wpiutil.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+HAL Extensions: No extensions found
+[phoenix] CANbus Connected: sim
+[phoenix] CANbus Network Up: sim
+SWERVE_CREATED
+SWERVE_STATE 0 Pose2d(Translation2d(X: 0.00, Y: 0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+SWERVE_STATE 10 Pose2d(Translation2d(X: 0.11, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+SWERVE_STATE 20 Pose2d(Translation2d(X: 0.30, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+SWERVE_STATE 30 Pose2d(Translation2d(X: 0.48, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+SWERVE_STATE 40 Pose2d(Translation2d(X: 0.67, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+CAN message is stale, data is valid but old. Check the CAN bus wiring, CAN bus utilization, and power to the device.
+	pigeon 2 1 ("canivore") Status Signal Yaw
+CAN message is stale, data is valid but old. Check the CAN bus wiring, CAN bus utilization, and power to the device.
+	pigeon 2 1 ("canivore") Status Signal AngularVelocityZWorld
+CAN frame not received/too-stale. Check the CAN bus wiring, CAN bus utilization, and power to the device.
+	ctre::phoenix6::BaseStatusSignal::WaitForAll
+SWERVE_STATE 50 Pose2d(Translation2d(X: 0.85, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+SWERVE_STATE 60 Pose2d(Translation2d(X: 1.04, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+SWERVE_STATE 70 Pose2d(Translation2d(X: 1.22, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+SWERVE_STATE 80 Pose2d(Translation2d(X: 1.41, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+SWERVE_STATE 90 Pose2d(Translation2d(X: 1.59, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+SWERVE_DONE Pose2d(Translation2d(X: 1.76, Y: -0.00), Rotation2d(Rads: 0.00, Deg: 0.00))
+[phoenix-diagnostics] Server shutdown cleanly. (dur:0)
+	
+[phoenix] Library shutdown cleanly
+	
