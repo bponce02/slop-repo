@@ -1,0 +1,16 @@
+plugins { id 'java' }
+repositories {
+    mavenCentral()
+    maven { url 'https://frcmaven.wpi.edu/artifactory/release/' }
+}
+// Browser workspace dependency declaration. This is NOT a deployable GradleRIO build.
+// Hardware deployment requires replacing browser entrypoint / IO with native WPILib HAL
+// and installing Phoenix 6. The browser compiler does not execute Gradle.
+def wpiVersion = '2025.3.2'
+dependencies {
+    implementation "edu.wpi.first.wpilibj:wpilibj-java:$wpiVersion"
+    implementation "edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:$wpiVersion"
+    implementation "edu.wpi.first.wpimath:wpimath-java:$wpiVersion"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:$wpiVersion"
+    implementation "edu.wpi.first.wpiunits:wpiunits-java:$wpiVersion"
+}

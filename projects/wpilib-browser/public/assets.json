@@ -3,8 +3,8 @@
     "path": "vendor/compiler.wasm",
     "url": "https://teavm.org/playground/3/compiler.wasm",
     "build": "teavm-javac 208d4c97a602 + diagnostic patch + runtime-src sequential subset",
-    "sha256": "cabac0402e7cc19ad8559039a463354bf66cb8dcc5d852a846b29bbecbac8d60",
-    "bytes": 4707677
+    "sha256": "9bab55f087e6a06389494ffde50c66da32f8285e4de45b131c8e79881a250d2d",
+    "bytes": 4707703
   },
   {
     "path": "vendor/compiler.wasm-runtime.js",
@@ -180,5 +180,12 @@
     "build": null,
     "sha256": "0eb2fdad6e40ab8832a78c9b22f58196dd970594e8d3d5a26ead87847c4f3a96",
     "bytes": 1620088
+  },
+  {
+    "path": "lib/teavm-jso.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/teavm/teavm-jso/0.16.0/teavm-jso-0.16.0.jar",
+    "build": null,
+    "sha256": "58b337b93924106bf819c45890c7c231a0c740145afe77795f1e0f099f621d71",
+    "bytes": 8437
   }
 ]

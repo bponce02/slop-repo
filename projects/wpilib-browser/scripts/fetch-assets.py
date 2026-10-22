@@ -7,6 +7,7 @@ for module in ['wpimath','wpiutil','wpiunits','wpilibj','wpilibNewCommands','hal
  a=module+'-java'; assets[f'lib/{a}.jar']=f'https://frcmaven.wpi.edu/artifactory/api/download/release/edu/wpi/first/{module}/{a}/2025.3.2/{a}-2025.3.2.jar'
 for group,artifact,version in [('org.ejml','ejml-'+m,'0.43.1') for m in ['simple','core','ddense','fdense','cdense','zdense','dsparse','fsparse']]+[('us.hebi.quickbuf','quickbuf-runtime','1.3.3')]+[('com.fasterxml.jackson.core','jackson-'+m,'2.15.2') for m in ['annotations','core','databind']]:
  assets[f'lib/{artifact}.jar']=f'https://repo.maven.apache.org/maven2/{group.replace(".","/")}/{artifact}/{version}/{artifact}-{version}.jar'
+assets['lib/teavm-jso.jar']='https://repo.maven.apache.org/maven2/org/teavm/teavm-jso/0.16.0/teavm-jso-0.16.0.jar'
 def fetch(item):
  name,url=item; p=root/name; p.parent.mkdir(parents=True,exist_ok=True)
  if not p.exists():

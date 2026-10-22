@@ -14,8 +14,9 @@ async function init(){
 const ready=init().catch(e=>send('error',{text:e.stack||String(e)}));
 onmessage=async({data})=>{await ready;try{
  compiler.clearSourceFiles();compiler.clearOutputFiles();
- for(const [path,text] of Object.entries(data.files))compiler.addSourceFile(path,text);
- if(!compiler.compile())return send('failed');
- if(!compiler.generateWebAssembly({outputName:'robot',mainClass:data.mainClass}))return send('failed');
+ for(const [path,text] of Object.entries(data.files))if(path.endsWith(".java"))compiler.addSourceFile(path.replace(/^src\/main\/java\//,""),text);
+ if(data.mainClass==="frc.robot.Main") {const bridge=await(await fetch("./bridge.json")).json();for(const [path,text] of Object.entries(bridge))compiler.addSourceFile(path,text);}
+ send("diagnostic",{text:"[javac]"});if(!compiler.compile())return send('failed');
+  send("diagnostic",{text:"[TeaVM]"});if(!compiler.generateWebAssembly({outputName:'robot',mainClass:data.mainClass}))return send('failed');
  send('compiled',{wasm:compiler.getWebAssemblyOutputFile('robot.wasm')});
 }catch(e){send('error',{text:e.stack||String(e)});}};

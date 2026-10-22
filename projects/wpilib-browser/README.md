@@ -1,57 +1,60 @@
-# WPILib Browser Lab — incomplete prototype
+# WPILib Browser Lab
 
-Static browser Java workspace, statement REPL, CLI output panel, simulated Driver Station controls and an isometric tank-drive preview with four Kraken placeholders (two per side).
+A serverless Java/Wasm robot workspace with top-level **Editor** and **Driving** tabs. VS Code-inspired dark editor, file explorer, Java syntax highlighting, line numbers, persistent files, CLI and REPL. Three.js renders a KOP-style six-wheel tank chassis with **four Kraken X60 motors, two per side**.
 
 ## Run
 
 ```sh
-python3 scripts/fetch-assets.py
 python3 -m http.server 8080 --directory public
 ```
 
-Open http://localhost:8080. No Java execution backend is used. Assets are served locally. Requires a modern browser with Wasm GC.
+Open http://localhost:8080. Bundled compiler/JARs require no execution server. Modern Wasm-GC and WebGL browser required.
 
-## Current blocker / verified status
+1. Editor → **Compile & run project**. Wait for `[robot running]`.
+2. Driving → **Enable**. W/S control left side, ↑/↓ right side.
+3. Drag to orbit; scroll to zoom. Disable / E-stop cuts commanded voltage, while drivetrain coasts.
+4. Edit `DriveSubsystem.java` (e.g. multiplier 6.0 → 3.0), rebuild, then drive to observe changed behavior.
+5. REPL compiles independent statement snippets, replaying successful submissions. Running it stops the robot worker; rebuild the robot to drive again.
 
-Tested in headless Chromium through Playwright. Real WPILib Java successfully compiles to Wasm and executes:
+## Actual Java control loop
 
-```text
-WPILib clamp: 1.0
-Two-Kraken stall torque (Nm): 14.18
+`starter/src/main/java/frc/robot/` contains Main, Robot (extends TimedRobot), RobotContainer, and DriveSubsystem. Real WPILib RunCommand and SubsystemBase plus WPILib's CommandScheduler scheduling logic drive real DifferentialDrivetrainSim using DCMotor.getKrakenX60(2). Java publishes pose/encoder/voltage telemetry to WebGL; there is no independent JS physics model. Autonomous drives at 35% of the Java voltage multiplier. Changing mode, switching tabs, losing focus and hiding the page disables driving.
+
+**This is a browser-adapted WPILib project, not an unchanged or deployable GradleRIO/Phoenix robot.** The following adapters are explicit and inspectable in `public/bridge/`:
+
+- TimedRobot callbacks are host-driven at fixed 20 ms simulated steps; browser scheduling can run slower than real time.
+- CommandScheduler is derived from WPILib 2025.3.2 (BSD); native HAL reporting, LiveWindow callbacks, native Watchdog and RobotState access are adapted. Scheduling/arbitration logic remains upstream. Composition tracking uses strong identity references instead of WeakHashMap.
+- BrowserWatchdog does not monitor deadlines; no native notifier/watchdog emulation is claimed.
+- SendableRegistry stores metadata only: no NetworkTables/LiveWindow publication. Strong references persist until rebuilding.
+- BrowserIO supplies mode/input; no native joystick HAL or Phoenix CAN support. Four motors are represented in the physical motor model, not four Phoenix devices.
+- The simulator subclasses only the battery-voltage clamp to use an explicit 12 V simulation supply.
+- Runtime Fork/Join subset is sequential/lazy and is not a conformant concurrent JVM. Requests for parallelism >1 fail. IntStream.parallel remains sequential.
+
+`starter/build.gradle` documents dependencies only; browser builds do not execute Gradle. Native hardware deployment is out of scope.
+
+## Browser validation
+
+```sh
+npm install
+npx playwright install chromium
+# with static server running:
+npm test
+npm run test:physics
+npm run test:ui
 ```
 
-The initial failure was caused by mixing upstream compiler and classlib versions. All compiler assets now use `/playground/3/` together.
+Chromium E2E verifies real Java project compilation, nonzero pose, teleop 6 V, E-stop latch, autonomous 2.1 V, mode-change disable, edited Java 3 V, disabled zero voltage, and no page exceptions. Screenshots: `tests/editor-tab.png`, `tests/driving-tab.png`, `tests/mobile-editor.png`.
 
-A separate test of `DifferentialDrivetrainSim` fails during Wasm generation: EJML `pabeles/concurrency/ConcurrencyOps.java` references missing classes. The diagnostic formatter has now been patched and rebuilt. Chromium confirms the missing class is `java.util.concurrent.ForkJoinPool`. Physics integration remains blocked; no fake replacement is presented as WPILib.
+Verified standalone physics output at 6 V for one simulated second: `WPILib drivetrain distance: 2.097324209817624`. JVM numerical parity and arbitrary concurrency programs have not been validated.
 
-The Driver Station and canvas preview are independent approximate JavaScript models. They are NOT connected to Java robot code. Native HAL/Phoenix, actual WPILib DifferentialDrivetrainSim, and the normal command-based starter are not implemented. The default Java workspace is only a math smoke test. The canvas is an isometric projection, not a full WebGL scene.
-
-REPL submissions wrap statements in a main method and replay prior successful submissions; this is not JShell and side effects repeat. Workers can be terminated using Stop. Browser localStorage saves edited files.
-
-Bundled dependencies: WPILib 2025.3.2 and its math dependencies. `public/assets.json` records download URLs and hashes. TeaVM-javac is Apache-2.0 with OpenJDK GPLv2+Classpath Exception components; WPILib is BSD. See upstream licensing before redistributing prebuilt dependencies.
-
-Next step: implement or avoid the missing ForkJoinPool API before implementing HAL bridges. Do not replace real WPILib classes with silent stubs.
-
-## Patched compiler
-
-Compiler + both class libraries are now built together from teavm-javac revision `208d4c97a602` (TeaVM 0.16.0). The diagnostic fix is in `patches/teavm-javac-diagnostics.patch`. Reproduce with JDK 25:
+## Rebuild / provenance
 
 ```sh
 JAVA_HOME=/path/to/jdk25 sh scripts/build-compiler.sh
+python3 scripts/sync-project.py
+python3 scripts/fetch-assets.py
 ```
 
-Successful build took 47 seconds after container memory increased from 2 GB to 6 GB. One Gradle worker and a 1200 MB daemon heap were used; the upstream Wasm compiler child has a 4 GB heap cap. No ForkJoinPool implementation or concurrency behavior changes have been made yet.
+TeaVM-javac revision 208d4c97a602 / TeaVM 0.16.0, with diagnostic fixes in `patches/`; sequential runtime additions in `runtime-src/`. Container build succeeded with 6 GB RAM, one Gradle worker, 1200 MB daemon heap and upstream 4 GB compiler child cap. Hashes/URLs are recorded in `public/assets.json` (locally patched compiler binaries are not identical to upstream downloads).
 
-## Runtime compatibility progress (latest)
-
-The previous ForkJoinPool blocker is now bypassed by an explicitly **single-threaded compatibility subset** in `runtime-src`. `ForkJoinTask` runs lazily on get/join, records results/failures/cancellation; the pool reports parallelism 1 and rejects requests for multiple workers. Only listed methods are supported; this is not a conformant general-purpose ForkJoinPool. `IntStream.parallel()` remains sequential. No WPILib or EJML physics formulas were changed.
-
-Browser test now executes real `DifferentialDrivetrainSim`, using two Kraken X60 motors per side. At 6 V per side for 50 × 20 ms it outputs:
-
-```
-WPILib drivetrain distance: 2.097324209817624
-```
-
-`tests/physics-snippet.java.txt` contains the exact test, including an explicit subclass overriding battery-voltage clamping with simulated 12 V. Without that adapter, the unmodified setInputs path still hits native HAL. No real HAL or Phoenix support has been implemented. The canvas preview remains disconnected. JVM parity and broader concurrency behavioral testing are still pending.
-
-Run `npm install`, `npx playwright install chromium`, then `npm test` / `npm run test:physics` with the static server already running. These tests assert the recorded output. The runtime patch is reproducible with `JAVA_HOME=/path/to/jdk25 python3 scripts/patch-runtime.py`.
+Licenses: TeaVM/TeaVM-javac Apache-2.0, OpenJDK components GPLv2 + Classpath Exception, WPILib BSD, EJML Apache-2.0, CodeMirror MIT, Three.js MIT. Inspect upstream licenses before redistributing bundles.

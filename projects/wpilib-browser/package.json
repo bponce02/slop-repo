@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "test": "node tests/browser-smoke.cjs",
-    "test:physics": "node tests/browser-physics.cjs"
+    "test:physics": "node tests/browser-physics.cjs",
+    "test:ui": "node tests/browser-ui.cjs"
   },
   "devDependencies": {
     "playwright": "^1.58.0"

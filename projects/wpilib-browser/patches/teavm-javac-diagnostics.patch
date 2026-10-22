@@ -1,8 +1,8 @@
 diff --git a/compiler/src/main/java/org/teavm/javac/TeaVMDiagnostic.java b/compiler/src/main/java/org/teavm/javac/TeaVMDiagnostic.java
-index 5b059ae..4c66055 100644
+index 5b059ae..eeaf33b 100644
 --- a/compiler/src/main/java/org/teavm/javac/TeaVMDiagnostic.java
 +++ b/compiler/src/main/java/org/teavm/javac/TeaVMDiagnostic.java
-@@ -55,7 +55,7 @@ public class TeaVMDiagnostic extends BaseDiagnostic {
+@@ -55,14 +55,14 @@ public class TeaVMDiagnostic extends BaseDiagnostic {
              problem.render(consumer);
              message = consumer.getText();
          }
@@ -11,3 +11,20 @@ index 5b059ae..4c66055 100644
      }
  
      @Override
+     @JSExport
+     @JSProperty
+     public int getLineNumber() {
+-        if (problem.getLocation().getSourceLocation() == null) {
++        if (problem.getLocation() == null || problem.getLocation().getSourceLocation() == null) {
+             return -1;
+         }
+         return problem.getLocation().getSourceLocation().getLine();
+@@ -72,7 +72,7 @@ public class TeaVMDiagnostic extends BaseDiagnostic {
+     @JSExport
+     @JSProperty
+     public String getFileName() {
+-        if (problem.getLocation().getSourceLocation() == null) {
++        if (problem.getLocation() == null || problem.getLocation().getSourceLocation() == null) {
+             return null;
+         }
+         return problem.getLocation().getSourceLocation().getFileName();
