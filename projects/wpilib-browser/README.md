@@ -58,3 +58,11 @@ python3 scripts/fetch-assets.py
 TeaVM-javac revision 208d4c97a602 / TeaVM 0.16.0, with diagnostic fixes in `patches/`; sequential runtime additions in `runtime-src/`. Container build succeeded with 6 GB RAM, one Gradle worker, 1200 MB daemon heap and upstream 4 GB compiler child cap. Hashes/URLs are recorded in `public/assets.json` (locally patched compiler binaries are not identical to upstream downloads).
 
 Licenses: TeaVM/TeaVM-javac Apache-2.0, OpenJDK components GPLv2 + Classpath Exception, WPILib BSD, EJML Apache-2.0, CodeMirror MIT, Three.js MIT. Inspect upstream licenses before redistributing bundles.
+
+## Official template provenance
+
+`upstream/commandbased/` contains the verbatim official WPILib v2025.3.2 command-based Java template, with URLs and SHA256 in `upstream/manifest.json`. Active `Robot.java` is identical except for the standard `frc.robot` package substitution. `Constants.java` is likewise imported. RobotContainer is customized for the requested tank robot; Main is a browser lifecycle launcher. Unused example commands/subsystem are kept outside the active starter in `template-examples/` because compiling them exposed a javac/Wasm stack overflow. The complete originals remain under upstream.
+
+The unchanged Robot lifecycle dispatches autonomous scheduling and teleop cancellation; physics now advances in DriveSubsystem.simulationPeriodic. The existing explicit native-service bridges still apply; this is not an unchanged HAL/GradleRIO project. Existing local edits use a separate localStorage key so they are not overwritten.
+
+Desktop validation: downloaded and launched official Microsoft VS Code with a disposable profile for reference (`tests/vscode-reference.png`). This is stock VS Code, not the full WPILib installer. Browser editor was also opened through the agent-owned desktop. Headless Chromium E2E confirms official Robot.java builds and drives, including autonomous and editing Java voltage. Desktop Chromium lacked WebGL in this environment; editor initialization now survives that failure with a visible message. Three.js driving remains verified in Chromium with software WebGL.

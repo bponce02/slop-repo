@@ -11,6 +11,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /** Four Kraken X60s, two per side. Browser output is voltage, not Phoenix CAN. */
 public class DriveSubsystem extends SubsystemBase {
+  public static DriveSubsystem instance;
+  public DriveSubsystem(){instance=this;}
+  @Override public void simulationPeriodic(){
+    if(!frc.browser.BrowserIO.enabled)stop();
+    step();publish();
+  }
   private double leftVolts, rightVolts;
   private final DifferentialDrivetrainSim physics = new DifferentialDrivetrainSim(
       DCMotor.getKrakenX60(2), 10.71, 7.5, 60.0, 0.0762, 0.62, null) {

@@ -1,6 +1,6 @@
 import {startScene} from './scene.js';
 const $=id=>document.getElementById(id),log=t=>{$('terminal').textContent+=t+'\n';$('terminal').scrollTop=1e9;};
-let files=JSON.parse(localStorage.getItem('robot-files-v2')||'null')||await(await fetch('starter.json')).json();
+let files=JSON.parse(localStorage.getItem('robot-files-v3-official')||'null')||await(await fetch('starter.json')).json();
 let robotReady=false,tickPending=false;
 let worker,runner,busy=false,history=[],pending=null;
 function controls(ready){$('eval').disabled=$('run').disabled=!ready;}
@@ -11,16 +11,16 @@ function start(){controls(false);$('status').textContent='Loading compiler + bun
  else if(d.type==='error'||d.type==='failed'){if(d.text)log(d.text);log('[compilation failed]');pending=null;idle();}
  else if(d.text)log(d.text);
 };}
-function save(){files[$('file').value]=$('editor').value;localStorage.setItem('robot-files-v2',JSON.stringify(files));}
+function save(){files[$('file').value]=$('editor').value;localStorage.setItem('robot-files-v3-official',JSON.stringify(files));}
 function showFiles(){ $('file').replaceChildren(...Object.keys(files).map(name=>new Option(name,name)));if(files['src/main/java/frc/robot/Robot.java'])$('file').value='src/main/java/frc/robot/Robot.java';$('editor').value=files[$('file').value];}
 let selectedFile=$('file').value;
-$('file').onchange=()=>{files[selectedFile]=$('editor').value;localStorage.setItem('robot-files-v2',JSON.stringify(files));selectedFile=$('file').value;$('editor').value=files[selectedFile];};$('save').onclick=save;
+$('file').onchange=()=>{files[selectedFile]=$('editor').value;localStorage.setItem('robot-files-v3-official',JSON.stringify(files));selectedFile=$('file').value;$('editor').value=files[selectedFile];};$('save').onclick=save;
 $('run').onclick=()=>{save();compile(files,'frc.robot.Main');};
 function compile(sources,mainClass){if(busy)return;robotReady=false;tickPending=false;window.dispatchEvent(new Event('robot-disconnected'));window.dispatchEvent(new Event('blur'));runner?.terminate();busy=true;controls(false);$('status').textContent='Compiling Java → Wasm…';log('$ javac + TeaVM');const javaSources=Object.fromEntries(Object.entries(sources).filter(([name])=>name.endsWith(".java")));log(`[sources: ${Object.keys(javaSources).length} Java files; non-Java files excluded]`);worker.postMessage({files:javaSources,mainClass});}
 $('eval').onclick=()=>{pending=$('snippet').value;compile({'Repl.java':`import edu.wpi.first.math.*;\nimport edu.wpi.first.math.util.*;\nimport edu.wpi.first.math.system.plant.*;\npublic class Repl { public static void main(String[] args) {\n${[...history,pending].join('\n')}\n}}`},'Repl');};
 $('clear').onclick=()=>{history=[];log('[REPL history cleared]');};$('stop').onclick=()=>{robotReady=false;window.dispatchEvent(new Event('robot-disconnected'));window.dispatchEvent(new Event('blur'));worker?.terminate();runner?.terminate();busy=false;pending=null;log('[workers stopped; restarting]');start();};
 $('reset').onclick=async()=>{if(!confirm('Replace saved files with starter?'))return;files=await(await fetch('starter.json')).json();showFiles();selectedFile=$('file').value;renderTree();save();refreshEditor();};
-showFiles();selectedFile=$('file').value;start();startScene();
+showFiles();selectedFile=$('file').value;start();
 
 function selectTab(driving){
  document.getElementById('editor-panel').hidden=driving;
@@ -64,3 +64,5 @@ $('terminal-panel-tab').onclick=()=>panel(false);$('repl-panel-tab').onclick=()=
 $('explorer-toggle').onclick=()=>{$('editor-panel').classList.toggle('sidebar-hidden');codeEditor.refresh();};
 $('search-open').onclick=()=>{const q=prompt('Find in current file');if(q){const i=codeEditor.getValue().indexOf(q);if(i>=0){codeEditor.setSelection(codeEditor.posFromIndex(i),codeEditor.posFromIndex(i+q.length));codeEditor.focus();}}};
 $('build-icon').onclick=$('menu-run').onclick=()=>$('run').click();$('menu-file').onclick=()=>$('save').click();$('menu-view').onclick=()=>$('explorer-toggle').click();
+
+try{startScene();}catch(e){log("3D initialization failed: "+e.message+". Use localhost or enable WebGL.");}

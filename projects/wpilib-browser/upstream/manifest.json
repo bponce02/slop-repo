@@ -1,0 +1,37 @@
+[
+  {
+    "path": "Main.java",
+    "url": "https://raw.githubusercontent.com/wpilibsuite/allwpilib/v2025.3.2/wpilibjExamples/src/main/java/edu/wpi/first/wpilibj/templates/commandbased/Main.java",
+    "sha256": "e32cae7a87f3df2e4ec6edfb9ba920672a889ffdfa20763b1c6c32ee1029983c"
+  },
+  {
+    "path": "Robot.java",
+    "url": "https://raw.githubusercontent.com/wpilibsuite/allwpilib/v2025.3.2/wpilibjExamples/src/main/java/edu/wpi/first/wpilibj/templates/commandbased/Robot.java",
+    "sha256": "f228b7a1281b782ab59a235b4c68f7545f2ec41b46a1bdd1ef6655d403073877"
+  },
+  {
+    "path": "RobotContainer.java",
+    "url": "https://raw.githubusercontent.com/wpilibsuite/allwpilib/v2025.3.2/wpilibjExamples/src/main/java/edu/wpi/first/wpilibj/templates/commandbased/RobotContainer.java",
+    "sha256": "4d95c873b38bccf1ba2c108c7fddca621c8b21d1d5a1c8761e206797676ceea8"
+  },
+  {
+    "path": "Constants.java",
+    "url": "https://raw.githubusercontent.com/wpilibsuite/allwpilib/v2025.3.2/wpilibjExamples/src/main/java/edu/wpi/first/wpilibj/templates/commandbased/Constants.java",
+    "sha256": "60e5bab0da3cd60ad9ac690ba7122ee9302193cf6f2f4b4a0d390f87f9b62f54"
+  },
+  {
+    "path": "commands/Autos.java",
+    "url": "https://raw.githubusercontent.com/wpilibsuite/allwpilib/v2025.3.2/wpilibjExamples/src/main/java/edu/wpi/first/wpilibj/templates/commandbased/commands/Autos.java",
+    "sha256": "38aef87885cfbc95854359dc2d8cc994f33b4a97c414bdc29b37e79db7efe95c"
+  },
+  {
+    "path": "commands/ExampleCommand.java",
+    "url": "https://raw.githubusercontent.com/wpilibsuite/allwpilib/v2025.3.2/wpilibjExamples/src/main/java/edu/wpi/first/wpilibj/templates/commandbased/commands/ExampleCommand.java",
+    "sha256": "4a3bc4d94c6c3e8f285cb3f355c7c4b691766d15a9c5153ddfc82a2a0cacd4ab"
+  },
+  {
+    "path": "subsystems/ExampleSubsystem.java",
+    "url": "https://raw.githubusercontent.com/wpilibsuite/allwpilib/v2025.3.2/wpilibjExamples/src/main/java/edu/wpi/first/wpilibj/templates/commandbased/subsystems/ExampleSubsystem.java",
+    "sha256": "1c18a4b0e7643dc58e25248a20368c16b564c7ace9158a305f42e6394293f567"
+  }
+]

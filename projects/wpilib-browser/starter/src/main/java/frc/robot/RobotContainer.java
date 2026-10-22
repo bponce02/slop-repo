@@ -1,3 +1,5 @@
+// Customized from WPILib 2025.3.2 command-based RobotContainer.
+// Example Xbox bindings replaced with explicit browser tank inputs.
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
