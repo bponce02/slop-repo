@@ -1,0 +1,55 @@
+c[?7l[2J[0mSeaBIOS (version rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org)
+Booting from ROM..c[?7l[2J[0m.
+PHOENIX_VM_PROBE_START
+x86_64
+ld.so (Debian GLIBC 2.41-12+deb13u3) stable release version 2.41.
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+openjdk version "25.0.5" 2026-10-20 LTS
+OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, interpreted mode)
+
+PHOENIX_LINKER_PROBE
+	linux-vdso.so.1 (0x00007f6ae77e5000)
+	libCTRE_PhoenixTools_Sim.so => /opt/phoenix/libCTRE_PhoenixTools_Sim.so (0x00007f6ae70e0000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f6ae6e7a000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f6ae6d8a000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f6ae6d5d000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f6ae6b67000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f6ae77e7000)
+	libCTRE_SimVictorSPX.so => /opt/phoenix/libCTRE_SimVictorSPX.so (0x00007f6ae6b43000)
+	libCTRE_SimTalonSRX.so => /opt/phoenix/libCTRE_SimTalonSRX.so (0x00007f6ae6b1a000)
+	libCTRE_SimPigeonIMU.so => /opt/phoenix/libCTRE_SimPigeonIMU.so (0x00007f6ae6af3000)
+	libCTRE_SimProTalonFX.so => /opt/phoenix/libCTRE_SimProTalonFX.so (0x00007f6ae6aa1000)
+	libCTRE_SimProTalonFXS.so => /opt/phoenix/libCTRE_SimProTalonFXS.so (0x00007f6ae6a49000)
+	libCTRE_SimProCANcoder.so => /opt/phoenix/libCTRE_SimProCANcoder.so (0x00007f6ae6a1d000)
+	libCTRE_SimProPigeon2.so => /opt/phoenix/libCTRE_SimProPigeon2.so (0x00007f6ae69e5000)
+	libCTRE_SimProCANrange.so => /opt/phoenix/libCTRE_SimProCANrange.so (0x00007f6ae69ba000)
+	libCTRE_SimProCANdi.so => /opt/phoenix/libCTRE_SimProCANdi.so (0x00007f6ae698c000)
+	libCTRE_SimProCANdle.so => /opt/phoenix/libCTRE_SimProCANdle.so (0x00007f6ae695e000)
+
+PHOENIX_VM_PROBE_DONE
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::loadLibrary has been called by com.ctre.phoenix6.jni.CtreJniWrapper in an unnamed module (file:/opt/phoenix.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+[phoenix] CANbus Connected: sim
+[phoenix] CANbus Network Up: sim
+CONFIG timeout=0.1 encoder=OK motor=OK seconds=0.241203716
+CONFIG timeout=1.0 encoder=OK motor=OK seconds=0.012955392
+CONFIG timeout=5.0 encoder=OK motor=OK seconds=0.01562634
+CONFIG_PROBE_DONE
+[phoenix-diagnostics] Server shutdown cleanly. (dur:1)
+	
+[phoenix] Library shutdown cleanly
+	
+
+
+BusyBox v1.37.0 (Debian 1:1.37.0-6+b9) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+/bin/sh: can't access tty; job control turned off
+/tmp # [6nqemu-system-x86_64: terminating on signal 15 from pid 18439 (timeout)

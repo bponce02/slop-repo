@@ -35,3 +35,9 @@ DeviceConfigProbe constructs one CoreCANcoder and one CoreTalonFX and applies de
 ## Additional controlled checks
 
 Preloading Phoenix-generated device state did NOT resolve TxFailed. Two guest CPUs with multi-thread TCG also did not resolve it. Adding passwd/group/hosts and mounted writable /dev/shm did not resolve it. Exact minimal JRE with -Xint/ActiveProcessorCount=1 still passes configuration on native Linux, reducing the likelihood of a JRE-only difference. CPU=max with two vCPUs produced a kernel panic (GENL controller -22); reverted launcher to known bootable single-vCPU configuration. These are negative results, not proof of one root cause. No successful browser swerve run. Future emulator investigation should start with CPU instruction/concurrency correctness and a native-QEMU versus Wasm-QEMU comparison, rather than further changing robot logic.
+
+## Timing intervention succeeds for isolated config
+
+The IDENTICAL guest image passed all three config tests under native QEMU TCG (0.1s/1s/5s settings, both devices OK). Native QEMU version differs from Wasm fork, so this alone doesn't isolate a specific code bug.
+
+Controlled experimental change to the Wasm launcher's emscripten_get_now: performance.timeOrigin + performance.now()*0.02 instead of the unscaled clock. Browser DeviceConfigProbe then returned encoder=OK motor=OK at all three settings (elapsed guest times .5175/.0837/.0692 sec). This is strong evidence of timing sensitivity, not a validated general-purpose clock solution: it alters guest time versus wall time and has not been checked for clock consistency across all APIs. Real swerve probe started afterward but was still initializing at last observation; no SWERVE_CREATED/nonzero pose observed. Do not claim browser swerve success. Clock-modified runtime remains /home/user/phoenix-vm-probe/assets/out.js, original preserved as out.original.js.
