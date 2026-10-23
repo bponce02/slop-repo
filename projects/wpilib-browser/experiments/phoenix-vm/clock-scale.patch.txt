@@ -1,0 +1,4 @@
+Experimental change in assets/out.js (QEMU Emscripten glue):
+- _emscripten_get_now = () => performance.timeOrigin + performance.now();
++ _emscripten_get_now = () => performance.timeOrigin + performance.now() * 0.02;
+This slows the host-clock input. Not a general clock-consistency fix or real-time simulation guarantee.

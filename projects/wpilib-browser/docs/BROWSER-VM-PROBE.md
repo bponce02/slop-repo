@@ -41,3 +41,14 @@ Preloading Phoenix-generated device state did NOT resolve TxFailed. Two guest CP
 The IDENTICAL guest image passed all three config tests under native QEMU TCG (0.1s/1s/5s settings, both devices OK). Native QEMU version differs from Wasm fork, so this alone doesn't isolate a specific code bug.
 
 Controlled experimental change to the Wasm launcher's emscripten_get_now: performance.timeOrigin + performance.now()*0.02 instead of the unscaled clock. Browser DeviceConfigProbe then returned encoder=OK motor=OK at all three settings (elapsed guest times .5175/.0837/.0692 sec). This is strong evidence of timing sensitivity, not a validated general-purpose clock solution: it alters guest time versus wall time and has not been checked for clock consistency across all APIs. Real swerve probe started afterward but was still initializing at last observation; no SWERVE_CREATED/nonzero pose observed. Do not claim browser swerve success. Clock-modified runtime remains /home/user/phoenix-vm-probe/assets/out.js, original preserved as out.original.js.
+
+## Actual browser swerve movement confirmed
+
+The finite real Phoenix swerve probe COMPLETED in desktop Chromium at http://open-terminal:8089/ using QEMU/Wasm Linux, unmodified Phoenix 26.3.0 libraries, WPILib 2026.2.2 native HAL, CTRE example-generated TunerConstants (bus changed to sim), minimal subclass (odometry frequency explicitly 10Hz), and experimental 0.02 clock scaling. Observed incremental X pose 0.14, 0.32, 0.45 ... 1.48m and final:
+
+```
+SWERVE_DONE Pose2d(Translation2d(X: 1.62, Y: 0.03), Rotation2d(Rads: 0.03, Deg: 1.82))
+[phoenix] Library shutdown cleanly
+```
+
+Screenshot tests/phoenix-swerve-browser-success.png. Forward translation only was tested. The run used 100 explicit 20ms simulation updates with sleeps, but experimental guest-clock scaling means no real-time or numerical parity claim. Boot + configuration + finite run took roughly ten minutes wall time on this environment; startup emitted stale-signal warnings. Native baseline (~1.76m) is not identical. This is proof of actual engine execution/movement, NOT an integrated interactive Driver Station/3D/editor feature and NOT full unmodified CTRE PathPlanner project compatibility. Rotation, strafe, disable validation and a reproducible portable image builder remain pending. Binary assets and custom image remain /home/user/phoenix-vm-probe/assets, outside repo.
